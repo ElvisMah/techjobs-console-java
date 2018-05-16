@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -12,6 +13,7 @@ public class TechJobs {
     private static Scanner in = new Scanner(System.in);
 
     public static void main (String[] args) {
+        // application runner
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -53,15 +55,13 @@ public class TechJobs {
 
             } else { // choice is "search"
 
-                // How does the user want to search (e.g. by skill or employer)
                 String searchField = getUserSelection("Search by:", columnChoices);
 
-                // What is their search term?
                 System.out.println("\nSearch term: ");
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -69,15 +69,12 @@ public class TechJobs {
         }
     }
 
-    // ﻿Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         Integer choiceIdx;
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
-        // associate an integer with each one
         Integer i = 0;
         for (String choiceKey : choices.keySet()) {
             choiceKeys[i] = choiceKey;
@@ -108,9 +105,22 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
+    // Prints a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        // someJobs holds jobs to print passed by other functions
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.isEmpty() ) {
+            System.out.println("These are not the jobs you are looking for");
+        } else {
+            System.out.println("***************");
+
+            for (int i = 0; i < someJobs.size(); i++) { // grab each job HashMap to print
+                // loop through all fields of job HashMap and print all data for every job there
+                for (Map.Entry<String, String> jobFields : someJobs.get(i).entrySet()) {
+                    System.out.println(jobFields.getKey() + ": " + jobFields.getValue());
+                }
+                System.out.println("***************");
+            }
+        }
     }
 }
