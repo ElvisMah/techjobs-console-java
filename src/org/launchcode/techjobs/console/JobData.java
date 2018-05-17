@@ -27,8 +27,7 @@ public class JobData {
      * @return List of all of the values of the given field
      */
     public static ArrayList<String> findAll(String field) { // field -> column name
-        // use in List functionality
-        // load data, if not already loaded
+
         loadData();
 
         ArrayList<String> values = new ArrayList<>(); // result keeper
@@ -40,7 +39,7 @@ public class JobData {
                 values.add(aValue);         // ends up with a list of unique whichever column data is requested
             }
         }
-        
+
         Collections.sort(values);
         return values;
     }

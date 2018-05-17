@@ -82,7 +82,6 @@ public class TechJobs {
         }
 
         do {
-
             System.out.println("\n" + menuHeader);
 
             // Print available choices
@@ -107,7 +106,6 @@ public class TechJobs {
 
     // Prints a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        // someJobs holds jobs to print passed by other functions
 
         if (someJobs.isEmpty() ) {
             System.out.println("These are not the jobs you are looking for");
