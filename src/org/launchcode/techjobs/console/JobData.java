@@ -40,16 +40,13 @@ public class JobData {
                 values.add(aValue);         // ends up with a list of unique whichever column data is requested
             }
         }
-
-        // sorting for ArrayList of strings:
-        // https://beginnersbook.com/2013/12/how-to-sort-arraylist-in-java/
+        
         Collections.sort(values);
         return values;
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {
-        // List functionality
-        // load data, if not already loaded
+
         loadData();
 
         ArrayList allJobsCopy = new ArrayList(allJobs); // it works for immutable objects
@@ -75,11 +72,11 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) { // grab a row with one job
+        for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column).toLowerCase(); // grab the key:value (row:column) pair that reflects the searched column
+            String aValue = row.get(column).toLowerCase();
 
-            if (aValue.contains(value.toLowerCase())) { // compare to the value we want to be in this column
+            if (aValue.contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -89,9 +86,6 @@ public class JobData {
 
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
-        // loop inside allJobs for the value variable
-        // if found add it to a new HashMap and stop iterating through other fields
-        // make it case-insensitive
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>(); // store filtered jobs here
